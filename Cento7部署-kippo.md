@@ -9,6 +9,9 @@ yum install  python-zope-interface python-pyasn1
 pip install twisted==13.1.0 
 pip install pycrypto
 firewall-cmd --permanent --add-port=2222/tcp
+#
+iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-ports 2222
+
 firewall-cmd --reload
 useradd -d /kippo/ kippo
 chown -R kippo:kippo /kippo
